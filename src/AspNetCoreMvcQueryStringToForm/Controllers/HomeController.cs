@@ -3,6 +3,7 @@ using AspNetCoreMvcQueryStringToForm.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMvcQueryStringToForm.Controllers;
+
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -12,19 +13,9 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string? email)
     {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        // NOTE: Ignoring the bound query string parameter and explicitly setting the view model property to null.
+        return View(new HomeIndexModel(Email: null));
     }
 }
