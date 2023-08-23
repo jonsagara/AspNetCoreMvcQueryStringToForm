@@ -50,7 +50,7 @@ The view uses `HomeIndexModel` as its view model. It has a single form with a te
 
 If I make a request to the action with an email query string parameter, the `Email` form field is automatically populated with that value, even though I'm explicitly setting the `Email` model property to null in the controller action:
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](images/repro.png)
+![Screenshot of the issue described in this README.](images/repro.png)
 
 ## Question
 
