@@ -1,5 +1,7 @@
 # ASP.NET Core MVC binding query string parameter and automatically populating the form
 
+_[Related Stack Overflow question](https://stackoverflow.com/q/76958399)_
+
 This is a simple ASP.NET Core MVC application showing how the framework takes values from the query string and uses them to automatically populate a form field on the same page.
 
 ## The Model (`Models/HomeIndexModel.cs`)
@@ -14,19 +16,19 @@ public record HomeIndexModel(string? Email);
 
 The controller action takes a `string?` from the query string and binds it to the `email` parameter.
 
-Note how we're ignoring this value and explicitly setting the view model's `Email` property to `null`.
+Note how we're ignoring this value and explicitly setting the model's `Email` property to `null`.
 
 ```csharp
 public IActionResult Index(string? email)
 {
-    // NOTE: Ignore the query string parameter and explicitly set the view model property to null.
+    // NOTE: Ignore the query string parameter and explicitly set the model property to null.
     return View(new HomeIndexModel(Email: null));
 }
 ```
 
 ## The View (`Views/Home/Index.cshtml`)
 
-The view uses `HomeIndexModel` as its view model. It has a single form with a textbox for `HomeIndexModel`'s `Email` property.
+The view uses `HomeIndexModel` as its model. It has a single form with a textbox for `HomeIndexModel`'s `Email` property.
 
 ```
 @model AspNetCoreMvcQueryStringToForm.Models.HomeIndexModel
