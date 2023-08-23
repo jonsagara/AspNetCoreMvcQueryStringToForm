@@ -2,6 +2,27 @@
 
 _[Related Stack Overflow question](https://stackoverflow.com/q/76958399)_
 
+## UPDATE 2023-08-23:
+
+Responders to the Stack Overflow question pointed me at `ModelState`, `asp-for`, and model binding. It looks like model binding adds the `email` query string value to `ModelState` with a state of `Valid`. Then, when rendering the page, `asp-for` notices that `ModelState` has a key named `email` and uses that to populate the textbox.
+
+In my case, the workaround is to remove `email` from `ModelState` before returning the model to the view:
+
+```csharp
+public IActionResult Workaround(string? email)
+{
+    // This removes "email" from ModelState, preventing asp-for from populating the form field.
+    ModelState.Remove(nameof(email));
+
+    // NOTE: Ignore the bound query string parameter and explicitly set the model property to null.
+    return View(new HomeWorkaroundModel(Email: null));
+}
+```
+
+_Original README content follows_
+
+---
+
 This is a simple ASP.NET Core MVC application showing how the framework takes values from the query string and uses them to automatically populate a form field on the same page.
 
 ## The Model (`Models/HomeIndexModel.cs`)

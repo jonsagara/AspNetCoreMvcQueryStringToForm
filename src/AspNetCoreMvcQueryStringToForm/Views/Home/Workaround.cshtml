@@ -1,17 +1,17 @@
-﻿@model AspNetCoreMvcQueryStringToForm.Models.HomeIndexModel
+﻿@model AspNetCoreMvcQueryStringToForm.Models.HomeWorkaroundModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Workaround";
 }
 
 <div class="text-center">
-
+    
     @if (string.IsNullOrWhiteSpace(Context.Request.Query["email"]))
     {
         <p>
-            <a asp-area="" asp-controller="Home" asp-action="Index" asp-route-email="foo">Click here to add email to the query string.</a>
+            <a asp-area="" asp-controller="Home" asp-action="Workaround" asp-route-email="foo">Click here to add email to the query string.</a>
         </p>
     }
-    
+
     <form>
         <label asp-for="Email"> Email
             <input type="email" asp-for="Email" />
